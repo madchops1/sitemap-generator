@@ -1,0 +1,669 @@
+$icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
+// bower:scss
+@import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
+// endbower
+
+.browsehappy {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+body {
+  padding: 0;
+}
+
+/* Everything but the jumbotron gets side spacing for mobile first views */
+.header,
+.marketing,
+.footer {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+small {
+  font-size: 12px;
+}
+
+/* Custom page header */
+.header {
+  //border-bottom: 1px solid #e5e5e5;
+  margin-bottom: 10px;
+
+  /* Make the masthead heading the same height as the navigation */
+  h3 {
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: 40px;
+    padding-bottom: 19px;
+  }
+}
+
+/* Custom page footer */
+.footer {
+  padding-top: 19px;
+  color: #777;
+  border-top: 1px solid #e5e5e5;
+
+  font-size: 13px;
+  //color: #ddd;
+
+  a {
+    color: #777 !important;
+    display: inline-block;
+  }
+}
+
+.container-narrow > hr {
+  margin: 30px 0;
+}
+
+/* Main marketing message and sign up button */
+.jumbotron {
+  text-align: center;
+  border-bottom: 1px solid #e5e5e5;
+
+  .btn {
+    font-size: 21px;
+    padding: 14px 24px;
+  }
+}
+
+/* Supporting marketing content */
+.marketing {
+  margin: 40px 0;
+
+  p + h4 {
+    margin-top: 28px;
+  }
+}
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 730px;
+  }
+
+  /* Remove the padding we set earlier */
+  .header,
+  .marketing,
+  .footer {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  /* Space out the masthead */
+  .header {
+    margin-bottom: 30px;
+  }
+  /* Remove the bottom border on the jumbotron for visual effect */
+  .jumbotron {
+    border-bottom: 0;
+  }
+}
+
+
+
+
+/*
+  Responsive CSS MacBook Retina Mockup by Henri Peetsmann
+  http://codepen.io/henripeetsmann/
+*/
+
+.css-mb {
+  max-width: 650px; /* Set the desired maximum width of the macbook */
+  min-width: 50px; /* Set the desired minimum width of the macbook */
+  margin: 0 auto; /* Align mockup to center */
+}
+
+.css-mb div {
+  box-sizing: border-box !important; /* Just in case */
+}
+
+/* Center the display */
+.css-mb .mb-display-position {
+  width: 80%;
+  margin: 0 auto;
+}
+
+/* The display */
+.css-mb .mb-display {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 65.9442%;
+  background: #373435;
+
+  -webkit-border-top-left-radius:  3.5% 5.3075%;
+      -moz-border-radius-topleft:  3.5% 5.3075%;
+          border-top-left-radius:  3.5% 5.3075%;
+
+  -webkit-border-top-right-radius: 3.5% 5.3075%;
+      -moz-border-radius-toptight: 3.5% 5.3075%;
+          border-top-right-radius: 3.5% 5.3075%;
+}
+
+/* Webcam */
+/* Browser may not render a perfect circle */
+.css-mb .mb-display:before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 3%;
+  left: 50%;
+  width: 1%;
+  height: 1.5164%;
+  margin-left: -0.5%;
+  border-radius: 50%;
+  background: #525252;
+}
+
+/* Glare */
+/* Browser may not render the top and right offset evenly */
+.css-mb .mb-display:after {
+  content: '';
+  display: none;
+  position: absolute;
+  right: 0.4%;
+  top: 0.64%;
+  width: 62.5%;
+  height: 100%;
+
+  background: none; /* Hide the gradient on older browsers */
+  background:    -moz-linear-gradient(55deg, rgba(0,0,0,0) 61%, rgba(255,255,255,0.05) 61%); /* FF3.6+ */
+  background: -webkit-linear-gradient(36deg, rgba(0,0,0,0) 61%, rgba(255,255,255,0.05) 61%); /* Chrome10+ and Safari5.1+ compute the degree differently */
+  background:      -o-linear-gradient(55deg, rgba(0,0,0,0) 61%, rgba(255,255,255,0.05) 61%); /* Opera 11.10+ */
+  background:     -ms-linear-gradient(55deg, rgba(0,0,0,0) 61%, rgba(255,255,255,0.05) 61%); /* IE10+ */
+  background:         linear-gradient(55deg, rgba(0,0,0,0) 61%, rgba(255,255,255,0.05) 61%);
+
+  -webkit-border-top-right-radius: 5.3075%;
+      -moz-border-radius-toptight: 5.3075%;
+          border-top-right-radius: 5.3075%;
+}
+
+/* Only show glare, if the class is applied */
+.css-mb.with-glare .mb-display:after { display: block; }
+
+/* Position the screen and give make it the right size, ratio 16:10 */
+.css-mb .mb-screen-position {
+  position: absolute;
+  top: 6.5%;
+  width: 93.2%;
+  left: 3.4%;
+  height: 0;
+  margin: 0;
+  padding-bottom: 58.25%; /* Ratio */
+}
+
+/* Give parent (this element) a "height", so that child elements can use height: 100%;*/
+.css-mb .mb-screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  background: #4b4b4d; /* bg color if content is not big enough, or rendering is off */
+}
+
+/* Image on the screen */
+.css-mb .mb-screen img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Iframe on the screen */
+.css-mb .mb-screen iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* Macbook body */
+.css-mb .mb-body {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 2.3%;
+  background: #e6e7e8;
+}
+
+/* The groove */
+.css-mb .mb-body:before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 14.0740%;
+  height: 0;
+  padding-bottom: 1.4814%;
+  margin-left: -7.037%;
+  background: #a9abae;
+
+  -webkit-border-bottom-left-radius:  7.0370% 50%;
+      -moz-border-radius-bottomleft:  7.0370% 50%;
+          border-bottom-left-radius:  7.0370% 50%;
+
+  -webkit-border-bottom-right-radius: 7.0370% 50%;
+      -moz-border-radius-bottomtight: 7.0370% 50%;
+          border-bottom-right-radius: 7.0370% 50%;
+}
+
+/* Macbook bottom */
+.css-mb .mb-bottom-cover {
+  width: 100%;
+  height: 0;
+  padding-bottom: 0.7407%;
+  background: #a9abae;
+
+  -webkit-border-bottom-left-radius:  12% 600%;
+      -moz-border-radius-bottomleft:  12% 600%;
+          border-bottom-left-radius:  12% 600%;
+
+  -webkit-border-bottom-right-radius: 12% 600%;
+      -moz-border-radius-bottomtight: 12% 600%;
+          border-bottom-right-radius: 12% 600%;
+}
+
+.crawl-status-0 {
+  color: #ccc;
+}
+
+.crawl-status-1 {
+  color: green;
+}
+
+.crawl-status-2 {
+  color: black;
+}
+
+.crawl-status-3 {
+  color: red;
+}
+
+
+
+.mainglitch {
+  font-size: 24px;
+  margin-top: -26px !important;
+}
+
+span.glitch {
+  color: white;
+  //font: bold 3rem Arial;
+  text-transform: uppercase;
+  text-align: center;
+  width: 500px;
+  left: 50%;
+  margin-left: -250px;
+  height: 155px;
+  top: 50%;
+  //margin-top: -127px;
+  position: absolute;
+  animation: glitch 2s steps(100) infinite;
+}
+
+@keyframes glitch {
+  0% {
+    text-shadow: 1px 0 0 red, -1px 0 0 blue;
+  }
+  1% {
+    text-shadow: 1px 0 0 red, -1px 0 0 blue;
+  }
+  2% {
+    text-shadow: 1px 0 0 red, -1px 0 0 blue;
+  }
+  3% {
+    text-shadow: 1px 0 0 red, -1px 0 0 blue;
+  }
+  4% {
+    text-shadow: 1px 0 0 red, -1px 0 0 blue;
+  }
+  5% {
+    text-shadow: -1px 0 0 red, 1px 0 0 blue;
+  }
+  6% {
+    text-shadow: -1px 0 0 red, 1px 0 0 blue;
+  }
+  7% {
+    text-shadow: -1px 0 0 red, 1px 0 0 blue;
+  }
+  8% {
+    text-shadow: -1px 0 0 red, 1px 0 0 blue;
+  }
+  9% {
+    text-shadow: -1px 0 0 red, 1px 0 0 blue;
+  }
+  10% {
+    text-shadow: -1px 0 0 red, 1px 0 0 blue;
+  }
+  11% {
+    text-shadow: 0.5px 0 0 red, -0.5px 0 0 lime;
+  }
+  12% {
+    text-shadow: 0.5px 0 0 red, -0.5px 0 0 lime;
+  }
+  13% {
+    text-shadow: 0.5px 0 0 red, -0.5px 0 0 lime;
+  }
+  14% {
+    text-shadow: 0.5px 0 0 red, -0.5px 0 0 lime;
+  }
+  15% {
+    text-shadow: 0.5px 0 0 red, -0.5px 0 0 lime;
+  }
+  16% {
+    text-shadow: -1px 0 0 red, 1px 0 0 lime;
+  }
+  17% {
+    text-shadow: -1px 0 0 red, 1px 0 0 lime;
+  }
+  18% {
+    text-shadow: -1px 0 0 red, 1px 0 0 lime;
+  }
+  19% {
+    text-shadow: -1px 0 0 red, 1px 0 0 lime;
+  }
+  20% {
+    text-shadow: -1px 0 0 red, 1px 0 0 lime;
+  }
+  21% {
+    text-shadow: 0.7px 0 0 blue, -0.7px 0 0 lime;
+  }
+  22% {
+    text-shadow: 0.7px 0 0 blue, -0.7px 0 0 lime;
+  }
+  23% {
+    text-shadow: 0.7px 0 0 blue, -0.7px 0 0 lime;
+  }
+  24% {
+    text-shadow: 0.7px 0 0 blue, -0.7px 0 0 lime;
+  }
+  25% {
+    text-shadow: 0.7px 0 0 blue, -0.7px 0 0 lime;
+  }
+  26% {
+    text-shadow: 0.7px 0 0 blue, -0.7px 0 0 lime;
+  }
+  27% {
+    text-shadow: 0.7px 0 0 blue, -0.7px 0 0 lime;
+  }
+  28% {
+    text-shadow: 0.7px 0 0 blue, -0.7px 0 0 lime;
+  }
+  29% {
+    text-shadow: 0.7px 0 0 blue, -0.7px 0 0 lime;
+  }
+  30% {
+    text-shadow: 0.7px 0 0 blue, -0.7px 0 0 lime;
+  }
+  31% {
+    text-shadow: -1px 0 0 blue, 1px 0 0 lime;
+  }
+  32% {
+    text-shadow: -1px 0 0 blue, 1px 0 0 lime;
+  }
+  33% {
+    text-shadow: -1px 0 0 blue, 1px 0 0 lime;
+  }
+  34% {
+    text-shadow: -1px 0 0 blue, 1px 0 0 lime;
+  }
+  35% {
+    text-shadow: -1px 0 0 blue, 1px 0 0 lime;
+  }
+  36% {
+    text-shadow: -1px 0 0 blue, 1px 0 0 lime;
+  }
+  37% {
+    text-shadow: -1px 0 0 blue, 1px 0 0 lime;
+  }
+  38% {
+    text-shadow: -1px 0 0 blue, 1px 0 0 lime;
+  }
+  39% {
+    text-shadow: -1px 0 0 blue, 1px 0 0 lime;
+  }
+  40% {
+    text-shadow: -1px 0 0 blue, 1px 0 0 lime;
+  }
+  41% {
+    text-shadow: 50px 0 0 blue, -50px 0 0 lime;
+  }
+  42% {
+    text-shadow: 0 0 0 blue, 0 0 0 lime;
+  }
+  43% {
+    text-shadow: 0.5px 0 0 red, -0.5px 0 0 lime;
+  }
+  44% {
+    text-shadow: 0.5px 0 0 red, -0.5px 0 0 lime;
+  }
+  45% {
+    text-shadow: 0.5px 0 0 red, -0.5px 0 0 lime;
+  }
+  46% {
+    text-shadow: 0.5px 0 0 red, -0.5px 0 0 lime;
+  }
+  47% {
+    text-shadow: -1px 0 0 red, 1px 0 0 lime;
+  }
+  48% {
+    text-shadow: -1px 0 0 red, 1px 0 0 lime;
+  }
+  49% {
+    text-shadow: -1px 0 0 red, 1px 0 0 lime;
+  }
+  50% {
+    text-shadow: -1px 0 0 red, 1px 0 0 lime;
+  }
+  51% {
+    text-shadow: 1px 0 0 red, -1px 0 0 blue;
+  }
+  52% {
+    text-shadow: 1px 0 0 red, -1px 0 0 blue;
+  }
+  53% {
+    text-shadow: 1px 0 0 red, -1px 0 0 blue;
+  }
+  54% {
+    text-shadow: 1px 0 0 red, -1px 0 0 blue;
+  }
+  55% {
+    text-shadow: 1px 0 0 red, -1px 0 0 blue;
+  }
+  56% {
+    text-shadow: -1px 0 0 red, 1px 0 0 blue;
+  }
+  57% {
+    text-shadow: -1px 0 0 red, 1px 0 0 blue;
+  }
+  58% {
+    text-shadow: -1px 0 0 red, 1px 0 0 blue;
+  }
+  59% {
+    text-shadow: -1px 0 0 red, 1px 0 0 blue;
+  }
+  60% {
+    text-shadow: -1px 0 0 red, 1px 0 0 blue;
+  }
+  61% {
+    text-shadow: 30px 0 0 red, -30px 0 0 lime;
+  }
+  62% {
+    text-shadow: 0 0 0 red, 0 0 0 lime;
+  }
+  63% {
+    text-shadow: 0.5px 0 0 red, -0.5px 0 0 blue;
+  }
+  64% {
+    text-shadow: 0.5px 0 0 red, -0.5px 0 0 blue;
+  }
+  65% {
+    text-shadow: 0.5px 0 0 red, -0.5px 0 0 blue;
+  }
+  66% {
+    text-shadow: 0.5px 0 0 red, -0.5px 0 0 blue;
+  }
+  67% {
+    text-shadow: -1px 0 0 red, 1px 0 0 blue;
+  }
+  68% {
+    text-shadow: -1px 0 0 red, 1px 0 0 blue;
+  }
+  69% {
+    text-shadow: -1px 0 0 red, 1px 0 0 blue;
+  }
+  70% {
+    text-shadow: -1px 0 0 red, 1px 0 0 blue;
+  }
+  71% {
+    text-shadow: 70px 0 0 red, -70px 0 0 blue;
+  }
+  72% {
+    text-shadow: 0 0 0 red, 0 0 0 blue;
+  }
+  73% {
+    text-shadow: 1px 0 0 red, -1px 0 0 blue;
+  }
+  74% {
+    text-shadow: 1px 0 0 red, -1px 0 0 blue;
+  }
+  75% {
+    text-shadow: 1px 0 0 red, -1px 0 0 blue;
+  }
+  76% {
+    text-shadow: 1px 0 0 red, -1px 0 0 blue;
+  }
+  77% {
+    text-shadow: -1px 0 0 red, 1px 0 0 blue;
+  }
+  78% {
+    text-shadow: -1px 0 0 red, 1px 0 0 blue;
+  }
+  79% {
+    text-shadow: -1px 0 0 red, 1px 0 0 blue;
+  }
+  80% {
+    text-shadow: -1px 0 0 red, 1px 0 0 blue;
+  }
+  81% {
+    text-shadow: 0.5px 0 0 red, -0.5px 0 0 lime;
+  }
+  82% {
+    text-shadow: 0.5px 0 0 red, -0.5px 0 0 lime;
+  }
+  83% {
+    text-shadow: 0.5px 0 0 red, -0.5px 0 0 lime;
+  }
+  84% {
+    text-shadow: 0.5px 0 0 red, -0.5px 0 0 lime;
+  }
+  85% {
+    text-shadow: 0.5px 0 0 red, -0.5px 0 0 lime;
+  }
+  86% {
+    text-shadow: -1px 0 0 red, 1px 0 0 lime;
+  }
+  87% {
+    text-shadow: -1px 0 0 red, 1px 0 0 lime;
+  }
+  88% {
+    text-shadow: -1px 0 0 red, 1px 0 0 lime;
+  }
+  89% {
+    text-shadow: -1px 0 0 red, 1px 0 0 lime;
+  }
+  90% {
+    text-shadow: -1px 0 0 red, 1px 0 0 lime;
+  }
+  91% {
+    text-shadow: 60px 0 0 lime, -60px 0 0 blue;
+  }
+  92% {
+    text-shadow: 0 0 0 lime, 0 0 0 blue;
+  }
+  92% {
+    text-shadow: 0.7px 0 0 blue, -0.7px 0 0 lime;
+  }
+  93% {
+    text-shadow: 0.7px 0 0 blue, -0.7px 0 0 lime;
+  }
+  94% {
+    text-shadow: 0.7px 0 0 blue, -0.7px 0 0 lime;
+  }
+  95% {
+    text-shadow: 0.7px 0 0 blue, -0.7px 0 0 lime;
+  }
+  96% {
+    text-shadow: -1px 0 0 blue, 1px 0 0 lime;
+  }
+  97% {
+    text-shadow: -1px 0 0 blue, 1px 0 0 lime;
+  }
+  98% {
+    text-shadow: -1px 0 0 blue, 1px 0 0 lime;
+  }
+  99% {
+    text-shadow: -1px 0 0 blue, 1px 0 0 lime;
+  }
+  100% {
+    text-shadow: -1px 0 0 blue, 1px 0 0 lime;
+  }
+}
+
+.overlay {
+  background-color:rgba(0,0,0,0.5);
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  position: absolute;
+
+  .btn {
+    position: relative;
+    top: 65%;
+    margin: 0px auto;
+    display: block;
+    width: 50%;
+  }
+}
+
+.glyphicon-spin {
+    -webkit-animation: spin 3000ms infinite linear;
+    animation: spin 3000ms infinite linear;
+}
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}
+@keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}
+
+.center {
+  text-align: center;
+}
+
+.list {
+
+  margin: 0px;
+  padding: 0px;
+
+  li {
+    list-style: none;
+  }
+}

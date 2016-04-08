@@ -1,0 +1,133 @@
+
+
+<div class="jumbotron" ng-hide="crawling">
+      <img src="images/karl.png" alt="I'm Karl"><br>
+<h1>Well Hi There!</h1>
+  <p class="lead">
+    I'll gladly crawl your site and generate a <strong>SITEMAP</strong>
+    <br>
+    <small>I play nice with sites that use a lot of javascript, angular, react, etc. <span class="glyphicon glyphicon-heart"></span></small>
+    <Br>
+
+  </p>
+
+  <div class="alert alert-danger alert-dismissible" role="alert" ng-show="error">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <strong>Error!</strong> {{msg}}
+  </div>
+
+  <p>
+    <div class="form-group">
+      <label for="url">Homepage URL</label>
+      <input class="form-control" ng-model="inputUrl" id="url" placeholder="http://www.karlsteltenpohl.com">
+    </div>
+    <a class="btn btn-lg btn-success" ng-disabled="!inputUrl" ng-hide="crawling" ng-click="go()" ng-href="#/">GO <span class="glyphicon {{statusIcon}}"></span></a>
+  </p>
+</div>
+
+
+<!-- Add or remove "with-glare" class. Removing the glare makes the screen interactive -->
+<div class="css-mb" style="" ng-show="crawling">
+  <div class="mb-display-position">
+    <div class="mb-display">
+      <div class="mb-screen-position">
+        <div class="mb-screen">
+          <div class="overlay">
+            <span class="glitch mainglitch" ng-hide="complete">Crawling</span>
+            <span class="glitch" ng-hide="complete"><small>{{currentUrl}}</small></span>
+            <span class="glitch mainglitch" ng-show="complete">Finished</span>
+            <a class="btn btn-lg btn-danger" ng-click="cancel()" ng-href="#/" ng-hide="complete">Cancel <span class="glyphicon glyphicon-cog glyphicon-spin"></span></a>
+            <a class="btn btn-lg btn-success" ng-click="download(this)" ng-href="#/" ng-show="complete">Download Sitemap <span class="glyphicon glyphicon-floppy-save"></span></a>
+            <!-- <a class="btn btn-lg btn-info" ng-click="cancel()" href="">Start Over <span class="glyphicon glyphicon-refresh"></span></a> -->
+
+          </div>
+          <div ng-bind-html="preview" id="preview" style="width: 100%; height: 100%;"></div>
+
+          <!-- Image (aspect 16:10 recommended, but not required). You might also want to change or remove the background color, in case the picture is not big enough, or rendering is off  -->
+          <!--
+          <img src="https://unsplash.imgix.net/photo-1418479631014-8cbf89db3431?fit=crop&fm=jpg&h=500&q=75&w=800" alt="example image" />
+          -->
+          <!-- Image By André Freitas from unsplash.com -->
+
+          <!-- Youtube - don't forget to remove glare -->
+          <!-- <iframe width="960" height="480" src="http://www.youtube.com/embed/GUEZCxBcM78?rel=0&amp;showinfo=0&amp;iv_load_policy=3&amp;controls=2" frameborder="0"></iframe> -->
+          <!-- Notice: Youtube has some toruble with embed players and gives consol errors -->
+
+          <!-- Iframe, simple website - don't forget to remove glare -->
+          <!-- <iframe src="http://example.com" frameborder="0"></iframe> -->
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mb-body"></div>
+  <div class="mb-bottom-cover"></div>
+</div>
+
+<!--
+<div class="row marketing center" ng-show="complete">
+  <a class="btn btn-lg btn-success" ng-click="download(this)" href="">Download <span class="glyphicon glyphicon-floppy-save"></span></a>
+  <a class="btn btn-lg btn-info" ng-click="cancel()" href="">Start Over <span class="glyphicon glyphicon-refresh"></span></a>
+</div>
+-->
+
+<div class="row marketing" ng-show="links.length">
+  <h3>Pages ({{links.length}})</h3>
+  <ul class="list">
+    <li ng-repeat="page in links" style="font-size:12px;" ng-class="pageClass(page.crawled, page.url)"><span class="glyphicon {{pageIcon(page.crawled, page.url)}}"></span> {{page.url}}</li>
+  </ul>
+  <br>
+  <div class="center" ng-show="complete">
+    <a class="btn btn-lg btn-success" ng-click="download(this)" ng-href="#/" >Download Sitemap <span class="glyphicon glyphicon-floppy-save"></span></a>
+    <a class="btn btn-lg btn-info" ng-click="cancel()" href="#/">Start Over <span class="glyphicon glyphicon-refresh"></span></a>
+  </div>
+</div>
+
+<div class="row marketing">
+  <h3>What's so special about this sitemap generator?</h3>
+  <p>
+    <strong>This crawler will execute your javascript.</strong> So its perfect for generating sitemaps for sites built with
+    angular, react, or any other popular .js framework.
+  </p>
+
+  <h4>How to use this sitemap generator</h4>
+  <p>
+  In order for the crawler to properly scan your website. Place this script at the bottom of your site before the closing body tag.
+  You can remove this script after your sitemap is generated.
+  </p>
+  <p>
+  <textarea style="width:100%; height:112px; line-height:14px; padding:6px; border-radius:6px; background: #FFFEDF; border: 1px dashed #ccc; font-family: courier; font-size: 12px;" onfocus="this.select();" onmouseup="return false;">
+<!-- Sitemap Generator -->
+<script type="text/javascript">
+  var _0xaea9=["sitemapgenerator:: ","innerHTML","body","document","stringify","*","postMessage","setTimeout"];window[_0xaea9[7]](function(){parent[_0xaea9[6]](_0xaea9[0]+JSON[_0xaea9[4]](window[_0xaea9[3]][_0xaea9[2]][_0xaea9[1]]),_0xaea9[5])},3000);
+</script></textarea>
+  </p>
+
+  <h4>Where do I submit my sitemap?</h4>
+  <p>
+  <a href="https://www.google.com/webmasters/tools/sitemap-list" target="_blank">Submit your sitemap to Google using the Search Console Sitemaps tool.</a>
+  </p>
+
+  <h4>Common Issues</h4>
+  <ul>
+    <li>The script above must be included on all the pages of your website. Placing it in the footer before the closing body tag is best practice.</li>
+    <li>Passing the "X-Frame-Options" header will prevent the crawler from working properly. Please make sure you are not passing this header back in your page responses.</li>
+    <li>The sitemap generator may experience problems on pages that take longer than 10 seconds to load. In order to crawl javascript initiated content the crawler simulates browser behavior.</li>
+  </ul>
+
+  <h4>About</h4>
+  <p>
+  This sitemap generator is built with 100% javascript. Its designed to simulate a browser and crawl content,
+  especially content originating from javascript.
+  </p>
+
+  <p>
+  Other sitemap generators have issues crawling sites built with
+  javascript frameorks such as angular and react.
+  </p>
+
+  <p>
+  <a href="mailto:karl@webksd.com">Email me</a> if you find a bug or have a question.
+  </p>
+
+</div>
