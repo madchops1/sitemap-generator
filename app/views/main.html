@@ -4,7 +4,7 @@
       <img src="images/karl.png" alt="I'm Karl"><br>
 <h1>Well Hi There!</h1>
   <p class="lead">
-    I'll gladly crawl your site and generate a <strong>SITEMAP</strong>
+    I'll gladly crawl your site and generate an XML <strong>SITEMAP</strong>
     <br>
     <small>I play nice with sites that use a lot of javascript, angular, react, etc. <span class="glyphicon glyphicon-heart"></span></small>
     <Br>
@@ -19,9 +19,12 @@
   <p>
     <div class="form-group">
       <label for="url">Homepage URL</label>
-      <input class="form-control" ng-model="inputUrl" id="url" placeholder="http://www.karlsteltenpohl.com">
+      <input class="form-control" ng-model="inputUrl" id="url" placeholder="http://botmap.io">
     </div>
     <a class="btn btn-lg btn-success" ng-disabled="!inputUrl" ng-hide="crawling" ng-click="go()" ng-href="#/">GO <span class="glyphicon {{statusIcon}}"></span></a>
+    <br>
+    <br>
+    <small>IMPORTANT: You must include the script below to your site<br>or botmap.io will not be able to crawl your site.</small>
   </p>
 </div>
 
@@ -36,8 +39,8 @@
             <span class="glitch mainglitch" ng-hide="complete">Crawling</span>
             <span class="glitch" ng-hide="complete"><small>{{currentUrl}}</small></span>
             <span class="glitch mainglitch" ng-show="complete">Finished</span>
-            <a class="btn btn-lg btn-danger" ng-click="cancel()" ng-href="#/" ng-hide="complete">Cancel <span class="glyphicon glyphicon-cog glyphicon-spin"></span></a>
-            <a class="btn btn-lg btn-success" ng-click="download(this)" ng-href="#/" ng-show="complete">Download Sitemap <span class="glyphicon glyphicon-floppy-save"></span></a>
+            <a class="btn btn-lg btn-danger" ng-click="cancel()" ng-href="/" ng-hide="complete">Cancel <span class="glyphicon glyphicon-cog glyphicon-spin"></span></a>
+            <a class="btn btn-lg btn-success" ng-click="download(this)" ng-href="/" ng-show="complete">Download Sitemap <span class="glyphicon glyphicon-floppy-save"></span></a>
             <!-- <a class="btn btn-lg btn-info" ng-click="cancel()" href="">Start Over <span class="glyphicon glyphicon-refresh"></span></a> -->
 
           </div>
@@ -78,8 +81,8 @@
   </ul>
   <br>
   <div class="center" ng-show="complete">
-    <a class="btn btn-lg btn-success" ng-click="download(this)" ng-href="#/" >Download Sitemap <span class="glyphicon glyphicon-floppy-save"></span></a>
-    <a class="btn btn-lg btn-info" ng-click="cancel()" href="#/">Start Over <span class="glyphicon glyphicon-refresh"></span></a>
+    <a class="btn btn-lg btn-success" ng-click="download(this)" ng-href="/" >Download Sitemap <span class="glyphicon glyphicon-floppy-save"></span></a>
+    <a class="btn btn-lg btn-info" ng-click="cancel()" href="/">Start Over <span class="glyphicon glyphicon-refresh"></span></a>
   </div>
 </div>
 
@@ -109,11 +112,13 @@
   </p>
 
   <h4>Common Issues</h4>
-  <ul>
-    <li>The script above must be included on all the pages of your website. Placing it in the footer before the closing body tag is best practice.</li>
-    <li>Passing the "X-Frame-Options" header will prevent the crawler from working properly. Please make sure you are not passing this header back in your page responses.</li>
-    <li>The sitemap generator may experience problems on pages that take longer than 10 seconds to load. In order to crawl javascript initiated content the crawler simulates browser behavior.</li>
-  </ul>
+  <p>
+    <ul>
+      <li>The script above must be included on all the pages of your website. Placing it in the footer before the closing body tag is best practice.</li>
+      <li>Passing the "X-Frame-Options" header will prevent the crawler from working properly. Please make sure you are not passing this header back in your page responses.</li>
+      <li>The sitemap generator may experience problems on pages that take longer than 10 seconds to load. In order to crawl javascript initiated content the crawler simulates browser behavior.</li>
+    </ul>
+  </p>
 
   <h4>About</h4>
   <p>
@@ -124,6 +129,10 @@
   <p>
   Other sitemap generators have issues crawling sites built with
   javascript frameorks such as angular and react.
+  </p>
+
+  <p>
+  BotMap.io is currently free of charge and is considered a beta version of the software.
   </p>
 
   <p>

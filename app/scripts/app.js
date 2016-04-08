@@ -17,7 +17,7 @@ angular
     'ngSanitize',
     'ngTouch'
   ])
-  .config(function ($routeProvider, $sceDelegateProvider, $sceProvider) {
+  .config(function ($routeProvider, $sceDelegateProvider, $sceProvider, $locationProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
@@ -34,6 +34,7 @@ angular
       });
 
     $sceProvider.enabled(false);
+    $locationProvider.html5Mode(true);
 
     // Whitelist remote things
     /*$sceDelegateProvider.resourceUrlWhitelist([
