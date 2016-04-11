@@ -3,6 +3,15 @@
   "Version": "2012-10-17",
   "Statement": [
     {
+      "Sid": "Stmt146039043234234234234",
+      "Action": [
+        "s3:ListBucket",
+        "s3:PutBucketAcl"
+      ],
+      "Effect": "Allow",
+      "Resource": "arn:aws:s3:::botmap.io",
+    },
+    {
       "Sid": "Stmt1460390435001",
       "Action": [
         "s3:GetObject",
