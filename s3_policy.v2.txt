@@ -1,0 +1,23 @@
+{
+  "Id": "Policy1460390445342",
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "Stmt1460390435001",
+      "Action": [
+        "s3:CreateBucket",
+        "s3:GetBucketAcl",
+        "s3:GetObject",
+        "s3:GetObjectAcl",
+        "s3:ListBucket",
+        "s3:PutBucketAcl",
+        "s3:PutBucketWebsite",
+        "s3:PutObject",
+        "s3:PutObjectAcl"
+      ],
+      "Effect": "Allow",
+      "Resource": "arn:aws:s3:::botmap.io/*",
+      "Principal": "*"
+    }
+  ]
+}

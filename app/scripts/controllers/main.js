@@ -34,12 +34,9 @@ angular.module('sitemapGeneratorApp')
     $scope.complete = false;
     $scope.error = false;
     $scope.mgs = '';
-    //$scope.things = ['alpha','brave','charlie'];
 
-    //  'HTML5 Boilerplate',
-    //  'AngularJS',
-    //  'Karma'
-    //];
+    // kill console.log
+    console.log = function() {};
 
     // Create IE + others compatible event handler
     var eventMethod = window.addEventListener ? "addEventListener" : "attachEvent";
