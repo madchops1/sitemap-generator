@@ -36,7 +36,7 @@ angular.module('sitemapGeneratorApp')
     $scope.mgs = '';
 
     // kill console.log
-    console.log = function() {};
+    //console.log = function() {};
 
     // Create IE + others compatible event handler
     var eventMethod = window.addEventListener ? "addEventListener" : "attachEvent";
@@ -157,7 +157,10 @@ angular.module('sitemapGeneratorApp')
         //var x = JSON.stringify(anchors[i]);
         //x = x.replace(/\\"/g, '"');
         //console.log(anchors[i], x);
+        // replace the hostname
         var href = anchors[i].href.replace(/\%22/g, '').replace('http://'+window.location.host+window.location.pathname,'');
+
+
 
         // if trailing slash remove it
         if(href.substr(-1) === '/') {
@@ -172,16 +175,17 @@ angular.module('sitemapGeneratorApp')
         // if there is a trailing back slash
         //if(href.substr(-1) === "\\") {
           //href = href.substr(0, href.length - 1);
-          href = href.replace(/\\/, '');
+          href = href.replace(/\\/g, '');
+          href = href.replace(/%5C/g, '');
 
         //}
-
+        // Remove trailing quote
         if(href.substr(-1) === '"') {
           href = href.substr(0, href.length - 1);
         }
 
-        // Handle mailto: , javascript
-        if(href.substr(0,7) === 'mailto:' || href.substr(0,11) === 'javascript:') {
+        // Handle/Skip mailto: , javascript
+        if(href.indexOf('mailto:') !== -1 || href.indexOf('javascript:') !== -1) {
           continue;
         }
 
@@ -189,9 +193,10 @@ angular.module('sitemapGeneratorApp')
 
 
         // Handle remote urls
+        // If there is a remote url
         if(href.substr(0,7) === 'http://' || href.substr(0,8) === 'https://' || href.substr(0,2) === '//') {
 
-          // If the url is the same site add it to links
+          // and If the url is the same as the site being craled add it to links
           if(href.indexOf($scope.inputUrl) !== -1) {
             //$scope.links[href] = { crawled : false, url : href };
             //$scope.links.push({ crawled : false, url : href });

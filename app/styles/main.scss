@@ -12,6 +12,7 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 
 body {
   padding: 0;
+  background: url('../images/grey.png');
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -667,3 +668,23 @@ span.glitch {
     list-style: none;
   }
 }
+
+.bitcoin { font-size: 10px; }
+
+.logo {
+  //border: 10px solid #fff;
+  border-radius: 100px;
+  margin-top: -110px;
+  box-shadow: 0px 15px 40px -8px #000;
+}
+
+.navbar-default {
+  border-color: transparent;
+  background-color: transparent;
+}
+
+.jumbotron {
+  margin-top: 90px;
+  background-color: rgba(0,0,0,0.1);
+}
+
