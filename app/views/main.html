@@ -22,11 +22,12 @@
       <input class="form-control" ng-model="inputUrl" id="url" placeholder="http://botmap.io">
       <br>
       <label for="robots>">robots.txt</label>
-      <br><small>This crawler/bot <u><strong>cannot</strong></u> read a robots.txt file. If you wish to dissalow URLs please copy your robots.txt file directly into the box.</small>
       <textarea class="form-control" placeholder="User-Agent: *
 Disallow: /users
 Disallow: /api
 Disallow: /scripts/view" ng-model="robotsTxt"></textarea>
+      <br><small>This crawler/bot <u><strong>cannot</strong></u> read a robots.txt file. If you wish to dissalow URLs please copy your robots.txt file directly into the box.</small>
+
     </div>
     <a class="btn btn-lg btn-success" ng-disabled="!inputUrl" ng-hide="crawling" ng-click="go()" ng-href="">GO <span class="glyphicon {{statusIcon}}"></span></a>
     <br>
@@ -143,6 +144,28 @@ Disallow: /scripts/view" ng-model="robotsTxt"></textarea>
   <p>
   <a href="mailto:karl@webksd.com">Email me</a> if you find a bug or have a question.
   </p>
+
+  <!-- Begin MailChimp Signup Form -->
+  <br><br>
+  <link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+  <style type="text/css">
+    #mc_embed_signup{background:transparent; clear:left; font:14px Helvetica,Arial,sans-serif; width:100%;}
+    /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+       We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+  </style>
+  <div id="mc_embed_signup">
+  <form action="https://wescms.us7.list-manage.com/subscribe/post?u=81486f81685beb71289ee6fe1&amp;id=88fddba231" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+      <div id="mc_embed_signup_scroll">
+    <label for="mce-EMAIL">Get Notified of Bufixes and Updates</label>
+    <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+      <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+      <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_81486f81685beb71289ee6fe1_88fddba231" tabindex="-1" value=""></div>
+      <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+      </div>
+  </form>
+  </div>
+  <br><br>
+  <!--End mc_embed_signup-->
 
   <h3>Comment</h3>
 
