@@ -20,6 +20,13 @@
     <div class="form-group">
       <label for="url">Homepage URL</label>
       <input class="form-control" ng-model="inputUrl" id="url" placeholder="http://botmap.io">
+      <br>
+      <label for="robots>">robots.txt</label>
+      <br><small>This crawler/bot <u><strong>cannot</strong></u> read a robots.txt file. If you wish to dissalow URLs please copy your robots.txt file directly into the box.</small>
+      <textarea class="form-control" placeholder="User-Agent: *
+Disallow: /users
+Disallow: /api
+Disallow: /scripts/view" ng-model="robotsTxt"></textarea>
     </div>
     <a class="btn btn-lg btn-success" ng-disabled="!inputUrl" ng-hide="crawling" ng-click="go()" ng-href="">GO <span class="glyphicon {{statusIcon}}"></span></a>
     <br>
@@ -36,12 +43,14 @@
       <div class="mb-screen-position">
         <div class="mb-screen">
           <div class="overlay">
+            <textarea ng-model="textSitemap" style="width:100%; height:100%; position:relative; z-index:1" ng-show="textSitemap"></textarea>
             <span class="glitch mainglitch" ng-hide="complete">Crawling</span>
             <span class="glitch" ng-hide="complete"><small>{{currentUrl}}</small></span>
             <span class="glitch mainglitch" ng-show="complete">Finished</span>
             <a class="btn btn-lg btn-danger" ng-click="cancel()" ng-href="/" ng-hide="complete">Cancel <span class="glyphicon glyphicon-cog glyphicon-spin"></span></a>
-            <a class="btn btn-lg btn-success" ng-click="download(this)" ng-href="/" ng-show="complete">Download Sitemap <span class="glyphicon glyphicon-floppy-save"></span></a>
+            <a class="btn btn-lg btn-success" ng-click="download(this)" ng-href="/" ng-show="complete && !textSitemap">Get Sitemap <span class="glyphicon glyphicon-floppy-save"></span></a>
             <!-- <a class="btn btn-lg btn-info" ng-click="cancel()" href="">Start Over <span class="glyphicon glyphicon-refresh"></span></a> -->
+            
 
           </div>
           <div ng-bind-html="preview" id="preview" style="width: 100%; height: 100%;"></div>
@@ -67,12 +76,7 @@
   <div class="mb-bottom-cover"></div>
 </div>
 
-<!--
-<div class="row marketing center" ng-show="complete">
-  <a class="btn btn-lg btn-success" ng-click="download(this)" href="">Download <span class="glyphicon glyphicon-floppy-save"></span></a>
-  <a class="btn btn-lg btn-info" ng-click="cancel()" href="">Start Over <span class="glyphicon glyphicon-refresh"></span></a>
-</div>
--->
+
 
 <div class="row marketing" ng-show="links.length">
   <h3>Pages ({{links.length}})</h3>
@@ -81,7 +85,7 @@
   </ul>
   <br>
   <div class="center" ng-show="complete">
-    <a class="btn btn-lg btn-success" ng-click="download(this)" ng-href="/" >Download Sitemap <span class="glyphicon glyphicon-floppy-save"></span></a>
+    <a class="btn btn-lg btn-success" ng-click="download(this)" ng-hide="textSitemap" ng-href="/" >Get Sitemap <span class="glyphicon glyphicon-floppy-save"></span></a>
     <a class="btn btn-lg btn-info" ng-click="cancel()" href="/">Start Over <span class="glyphicon glyphicon-refresh"></span></a>
   </div>
 </div>

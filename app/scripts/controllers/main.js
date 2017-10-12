@@ -11,10 +11,13 @@
 
 /* Don't delete this it is the tracker script stuff...
 <script type="text/javascript">
-  //window.setTimeout(function () {
-  //  parent.postMessage("sitemapgenerator:: "+JSON.stringify(window.document.body.innerHTML),"*");
-  //}, 3000);
-  var _0xaea9=["sitemapgenerator:: ","innerHTML","body","document","stringify","*","postMessage","setTimeout"];window[_0xaea9[7]](function(){parent[_0xaea9[6]](_0xaea9[0]+JSON[_0xaea9[4]](window[_0xaea9[3]][_0xaea9[2]][_0xaea9[1]]),_0xaea9[5])},3000);
+  window.setTimeout(function () {
+    parent.postMessage("sitemapgeneratorbody:: "+JSON.stringify(window.document.body.innerHTML),"*");
+  }, 3000);
+  window.setTimeout(function () {
+    parent.postMessage("sitemapgeneratorhead:: "+JSON.stringify(window.document.head.innerHTML),"*");
+  }, 3000);
+  //var _0xaea9=["sitemapgenerator:: ","innerHTML","body","document","stringify","*","postMessage","setTimeout"];window[_0xaea9[7]](function(){parent[_0xaea9[6]](_0xaea9[0]+JSON[_0xaea9[4]](window[_0xaea9[3]][_0xaea9[2]][_0xaea9[1]]),_0xaea9[5])},3000);
   //var _0xd5e5=["\x73\x69\x74\x65\x6D\x61\x70\x67\x65\x6E\x65\x72\x61\x74\x6F\x72\x3A\x3A\x20","\x69\x6E\x6E\x65\x72\x48\x54\x4D\x4C","\x62\x6F\x64\x79","\x64\x6F\x63\x75\x6D\x65\x6E\x74","\x73\x74\x72\x69\x6E\x67\x69\x66\x79","\x2A","\x70\x6F\x73\x74\x4D\x65\x73\x73\x61\x67\x65","\x73\x65\x74\x54\x69\x6D\x65\x6F\x75\x74"];window[_0xd5e5[7]](function(){parent[_0xd5e5[6]](_0xd5e5[0]+JSON[_0xd5e5[4]](window[_0xd5e5[3]][_0xd5e5[2]][_0xd5e5[1]]),_0xd5e5[5])},3000);
 </script>
 */
@@ -24,6 +27,7 @@ angular.module('sitemapGeneratorApp')
   //.controller('MainCtrl',[ '$scope', '$http', '$sce', function ($scope, $http, $sce) {
 
     $scope.inputUrl = '';
+    $scope.robotsTxt = '';
     $scope.currentUrl = '';
     $scope.preview = '';
     $scope.crawling = false;
@@ -34,6 +38,9 @@ angular.module('sitemapGeneratorApp')
     $scope.complete = false;
     $scope.error = false;
     $scope.mgs = '';
+    $scope.robotsTxtFound = false;
+    $scope.disallowedUrls = [];
+    $scope.textSitemap = false;
 
     // kill console.log
     //console.log = function() {};
@@ -46,19 +53,27 @@ angular.module('sitemapGeneratorApp')
     // Listen to message from child window
     eventer(messageEvent,function(e) {
       //console.log('parent received message!:  ',e.data);
-      console.log('parent received message!', $scope.currentUrl);
-      if(e.data.indexOf('sitemapgenerator::') !== -1) {
+      //console.log('parent received message!', $scope.currentUrl);
+      if(e.data.indexOf('sitemapgenerator') !== -1) {
 
         // the script is there!
         $scope.script[$scope.currentUrl] = true;
 
         // get the links
         $scope.getLinks(e.data);
+        
 
         console.log('Links:', $scope.links);
         //$scope.$apply({});
 
       }
+
+      /*if(e.data.indexOf('sitemapgeneratorhead::') !== -1) {
+        if(!$scope.robotTextFound) {
+          $scope.getRobotsText(e.data);
+        }
+      }*/
+
       // error no script
       else {
         // can't error here as other postMessage calls may execute first
@@ -77,8 +92,10 @@ angular.module('sitemapGeneratorApp')
       // format the input url
       // if trailing slash remove it
       if($scope.inputUrl.substr(-1) === '/') {
-        $scope.inputUrl = $scope.inputUrl.substr(0, href.length - 1);
+        $scope.inputUrl = $scope.inputUrl.substr(0, $scope.inputUrl.length - 1);
       }
+
+      console.log('go', $scope.inputUrl);
 
       // if no http
       if($scope.inputUrl.substr(0,7) !== 'http://' && $scope.inputUrl.substr(0,8) !== 'https://') {
@@ -90,8 +107,16 @@ angular.module('sitemapGeneratorApp')
       $scope.error = false;
       $scope.msg = '';
 
+      $scope.pushToLinks($scope.inputUrl); // add the input url 
+
+      // handle any robots txt
+      if($scope.robotsTxt !== '' && !$scope.robotTxtFound) {
+        $scope.getDisallowedUrls();
+        $scope.robotsTxtFound = true;
+      }
+
       //$scope.links.push({ crawled : false, url : $scope.inputUrl });
-      $scope.pushToLinks($scope.inputUrl);
+      
       $scope.getPage($scope.inputUrl);
 
     };
@@ -101,8 +126,43 @@ angular.module('sitemapGeneratorApp')
       $scope.crawling = false;
       $scope.links = [];
       $scope.complete = false;
+      $scope.textSitemap = false;
     };
 
+    $scope.getDisallowedUrls = function () {
+
+      var lines = $scope.robotsTxt.split('\n');
+      console.log('LINES', lines);
+
+      for(var i=0; i<lines.length; i++) {
+        var line = lines[i].toLowerCase();
+        if(line.indexOf('disallow') > -1) {
+          var lineArray = line.split(':');
+          var url = lineArray[1].replace(/\s/g,'');
+          console.log('DISALLOWED URL', url);
+          if(url !== "") {
+            $scope.disallowedUrls.push($scope.inputUrl + url);
+          }
+        }
+      }
+
+
+
+      /*var t;
+      t = setTimeout(function () {
+
+        console.log('getRobotsText', url, data);
+
+        // errorhttps://shulkerbox.org/
+        if($scope.script[url] == false) {
+          // no script on page
+          console.log('ERROR 0001','you must include a script on your page');
+          $scope.pageError($scope.currentUrl);
+        }
+
+      }, 9000);*/
+
+    }
 
     /*
       Generates an iFrame...
@@ -274,7 +334,33 @@ angular.module('sitemapGeneratorApp')
       //$scope.links = arr.filter(function (item) {
       //  return (item.name !== 'zipCode');
       //});
-      var limit = 10000;
+
+      //if($scope.disallowedUrls.indexOf(href) > -1) {
+      //  return false;
+      //}
+
+      // remove trailing hash
+      if(href.substr(-1) === '#') {
+        href = href.substr(0, href.length - 1);
+      }
+
+      // remove trailing slash
+      if(href.substr(-1) === '/') {
+        href = href.substr(0, href.length - 1);
+      }
+      
+      // Disallowed URLS
+      //console.log('pushToLinks', $scope.disallowedUrls);
+      for(var i=0; i<$scope.disallowedUrls.length; i++) {
+        console.log('TACO', href, $scope.disallowedUrls[i], href.indexOf($scope.disallowedUrls[i]));
+        if(href.indexOf($scope.disallowedUrls[i]) > -1) {
+          return false;
+        }
+      }
+
+      //console.log('pushToLinks', href);
+
+      var limit = 3;
 
       if($scope.links.length > limit - 1) {return false;}
 
@@ -348,13 +434,16 @@ angular.module('sitemapGeneratorApp')
     /* Download */
     $scope.download = function(link) {
       console.log('download');
-      var txt = '<?xml version="1.0" encoding="UTF-8"?>';
-      txt = txt + '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
+      var txt = '<?xml version="1.0" encoding="UTF-8"?>\n';
+      txt = txt + '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
       angular.forEach($scope.links, function(value, key){
-        txt = txt + '<url><loc>' + value.url + '</loc><priority>0.5</priority></url>';
+        txt = txt + '<url><loc>' + value.url + '</loc><priority>0.5</priority></url>\n';
       });
       txt = txt + '</urlset>';
-      window.open( 'data:text/xml;charset=utf-8,' + encodeURIComponent(txt),'_blank');
+
+      $scope.textSitemap = txt;
+      
+      //document.open( 'data:text/xml;charset=utf-8,' + encodeURIComponent(txt),'_blank');
     };
   }]);
 
