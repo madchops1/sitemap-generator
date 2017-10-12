@@ -360,7 +360,7 @@ angular.module('sitemapGeneratorApp')
 
       //console.log('pushToLinks', href);
 
-      var limit = 3;
+      var limit = 50000;
 
       if($scope.links.length > limit - 1) {return false;}
 
