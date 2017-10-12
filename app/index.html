@@ -20,6 +20,15 @@
     <!-- endbuild -->
   </head>
   <body ng-app="sitemapGeneratorApp">
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.10&appId=571315959743299";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
     <!--[if lte IE 8]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -38,6 +47,7 @@
             </button> -->
 
             <a class="navbar-brand" href="/">BotMap.io <small>BETA v.1.0.13</small></a>
+            <div class="fb-like" style="float:right; margin: 14px;" data-href="http://botmap.io" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
           </div>
 
           <div class="collapse navbar-collapse" id="js-navbar-collapse">
@@ -59,14 +69,20 @@
     <div class="footer">
       <div class="container center">
         <p>
-          <span class="glyphicon glyphicon-heart"></span> <a href="https://github.com/madchops1" target="_blank">Karl J. Steltenpohl</a>
+          
+          <a href="https://github.com/madchops1/sitemap-generator" target="_blank">Source on Github</a>
           &nbsp;&nbsp;&nbsp;
-           <a href="https://github.com/madchops1/sitemap-generator" target="_blank">Source on Github</a>
-
-
+          <a href="https://www.patreon.com/karlsteltenpohl" target="_blank">Support Via Patreon (get a robot)</a>
+          &nbsp;&nbsp;&nbsp;
+          <a href="https://twitter.com/madchops1" target="_blank">Twitter</a>
+          <br><Br>
+          <span class="glyphicon glyphicon-heart"></span> <a href="http://karlsteltenpohl.com" target="_blank">Karl J. Steltenpohl</a>
+          
+          <!--
           <br>
           <a class="bitcoin" href="bitcoin:12DJdX9M5pDW7gWr4Sx6FD8BAd81Bszgde?amount=0.1&label=Sitemap%20Generator">Buy Me A Beer: 12DJdX9M5pDW7gWr4Sx6FD8BAd81Bszgde</a>
-          <br>
+          -->
+          &nbsp;&nbsp;&nbsp;
           <a href="http://www.wtfpl.net/" target="_blank"><img src="http://www.wtfpl.net/wp-content/uploads/2012/12/wtfpl-badge-4.png" width="80" height="15" alt="WTFPL" /></a>
         </p>
       </div>
@@ -91,6 +107,7 @@
       ga('create', 'UA-76160442-1', 'auto');
       ga('send', 'pageview');
     </script>
+
 
 
 
