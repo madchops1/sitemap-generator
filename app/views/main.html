@@ -1,18 +1,24 @@
 <div class="jumbotron" ng-hide="crawling">
 
-  <img src="images/karl.png" class="logo" alt="I'm Karl"><br>
+  <img src="images/karl.png" class="logo" alt="I'm Karl">
+  <br>
 
-  <h1>Well Hi There!</h1>
+  <h1>Sitemap Generator</h1>
 
   <p class="lead">
-    I'll gladly crawl your site and generate an XML <strong>SITEMAP</strong>
+    I'll gladly crawl your site and generate an XML
+    <strong>SITEMAP</strong>
     <br>
-    <small>I play nice with sites that use a lot of javascript, angular, react, etc. <span class="glyphicon glyphicon-heart"></span></small>
+    <small>I play nice with sites that use a lot of javascript, angular, react, vue, etc.
+      <span class="glyphicon glyphicon-heart"></span>
+    </small>
     <Br>
   </p>
 
   <div class="alert alert-danger alert-dismissible" role="alert" ng-show="error">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
     <strong>Error!</strong> {{msg}}
   </div>
 
@@ -26,13 +32,20 @@
 Disallow: /users
 Disallow: /api
 Disallow: /scripts/view" ng-model="robotsTxt"></textarea>
-      <br><small>This crawler/bot <u><strong>cannot</strong></u> read a robots.txt file. If you wish to dissalow URLs please copy your robots.txt file directly into the box.</small>
+      <br>
+      <small>This crawler/bot
+        <u>
+          <strong>cannot</strong>
+        </u> read a robots.txt file. If you wish to dissalow URLs please copy your robots.txt file directly into the box.</small>
 
     </div>
-    <a class="btn btn-lg btn-success" ng-disabled="!inputUrl" ng-hide="crawling" ng-click="go()" ng-href="">GO <span class="glyphicon {{statusIcon}}"></span></a>
+    <a class="btn btn-lg btn-success" ng-disabled="!inputUrl" ng-hide="crawling" ng-click="go()" ng-href="javascript:void(0)">GO
+      <span class="glyphicon {{statusIcon}}"></span>
+    </a>
     <br>
     <br>
-    <small>IMPORTANT: You must include the script below to your site<br>or botmap.io will not be able to crawl your site.</small>
+    <small>IMPORTANT: You must include the script below to your site
+      <br>or botmap.io will not be able to crawl your site.</small>
   </p>
 </div>
 
@@ -46,12 +59,18 @@ Disallow: /scripts/view" ng-model="robotsTxt"></textarea>
           <div class="overlay">
             <textarea ng-model="textSitemap" style="width:100%; height:100%; position:relative; z-index:1" ng-show="textSitemap"></textarea>
             <span class="glitch mainglitch" ng-hide="complete">Crawling</span>
-            <span class="glitch" ng-hide="complete"><small>{{currentUrl}}</small></span>
+            <span class="glitch" ng-hide="complete">
+              <small>{{currentUrl}}</small>
+            </span>
             <span class="glitch mainglitch" ng-show="complete">Finished</span>
-            <a class="btn btn-lg btn-danger" ng-click="cancel()" ng-href="/" ng-hide="complete">Cancel <span class="glyphicon glyphicon-cog glyphicon-spin"></span></a>
-            <a class="btn btn-lg btn-success" ng-click="download(this)" ng-href="/" ng-show="complete && !textSitemap">Get Sitemap <span class="glyphicon glyphicon-floppy-save"></span></a>
+            <a class="btn btn-lg btn-danger" ng-click="cancel()" ng-href="/" ng-hide="complete">Cancel
+              <span class="glyphicon glyphicon-cog glyphicon-spin"></span>
+            </a>
+            <a class="btn btn-lg btn-success" ng-click="download(this)" ng-href="/" ng-show="complete && !textSitemap">Download Sitemap
+              <span class="glyphicon glyphicon-floppy-save"></span>
+            </a>
             <!-- <a class="btn btn-lg btn-info" ng-click="cancel()" href="">Start Over <span class="glyphicon glyphicon-refresh"></span></a> -->
-            
+
 
           </div>
           <div ng-bind-html="preview" id="preview" style="width: 100%; height: 100%;"></div>
@@ -82,116 +101,142 @@ Disallow: /scripts/view" ng-model="robotsTxt"></textarea>
 <div class="row marketing" ng-show="links.length">
   <h3>Pages ({{links.length}})</h3>
   <ul class="list">
-    <li ng-repeat="page in links" style="font-size:12px;" ng-class="pageClass(page.crawled, page.url)"><span class="glyphicon {{pageIcon(page.crawled, page.url)}}"></span> {{page.url}}</li>
+    <li ng-repeat="page in links" style="font-size:12px;" ng-class="pageClass(page.crawled, page.url)">
+      <span class="glyphicon {{pageIcon(page.crawled, page.url)}}"></span> {{page.url}}</li>
   </ul>
   <br>
   <div class="center" ng-show="complete">
-    <a class="btn btn-lg btn-success" ng-click="download(this)" ng-hide="textSitemap" ng-href="/" >Get Sitemap <span class="glyphicon glyphicon-floppy-save"></span></a>
-    <a class="btn btn-lg btn-info" ng-click="cancel()" href="/">Start Over <span class="glyphicon glyphicon-refresh"></span></a>
+    <a class="btn btn-lg btn-success" ng-click="download(this)" ng-hide="textSitemap" ng-href="/">Get Sitemap
+      <span class="glyphicon glyphicon-floppy-save"></span>
+    </a>
+    <a class="btn btn-lg btn-info" ng-click="cancel()" href="/">Start Over
+      <span class="glyphicon glyphicon-refresh"></span>
+    </a>
   </div>
 </div>
 
 <div class="row marketing">
   <h3>What's so special about this sitemap generator?</h3>
   <p>
-    BotMap crawls a site as if it was a real person browsing a site, not like a server side CURL or standard xHttp request. <strong>This crawler will execute your javascript.</strong> So its perfect for generating sitemaps for sites built with
-    angular, react, or any other popular .js framework where content may be included via javascript.
+    BotMap crawls a site as if it was a real person browsing a site, not like a server side CURL or standard xHttp request.
+    <strong>This crawler will execute your javascript.</strong> So its perfect for generating sitemaps for sites built with angular,
+    react, or any other popular .js framework where content may be included via javascript.
   </p>
 
   <h4>How to use this sitemap generator</h4>
   <p>
-  In order for the crawler to properly scan your website BotMap needs permission to crawl your site. Place this script at the bottom of your site before the closing body tag to give BotMap permission to crawl your site.
-  You can remove this script after your sitemap is generated.
+    In order for the crawler to properly scan your website BotMap needs permission to crawl your site. Place this script at the
+    bottom of your site before the closing body tag to give BotMap permission to crawl your site. You can remove this script
+    after your sitemap is generated.
   </p>
   <p>
-  <textarea style="width:100%; height:112px; line-height:14px; padding:6px; border-radius:6px; background: #FFFEDF; border: 1px dashed #ccc; font-family: courier; font-size: 12px;" onfocus="this.select();" onmouseup="return false;">
+    <textarea style="width:100%; height:112px; line-height:14px; padding:6px; border-radius:6px; background: #FFFEDF; border: 1px dashed #ccc; font-family: courier; font-size: 12px;"
+      onfocus="this.select();" onmouseup="return false;">
 <!-- Sitemap Generator -->
 <script type="text/javascript">
-  var _0xaea9=["sitemapgenerator:: ","innerHTML","body","document","stringify","*","postMessage","setTimeout"];window[_0xaea9[7]](function(){parent[_0xaea9[6]](_0xaea9[0]+JSON[_0xaea9[4]](window[_0xaea9[3]][_0xaea9[2]][_0xaea9[1]]),_0xaea9[5])},3000);
+  var _0xaea9 = ["sitemapgenerator:: ", "innerHTML", "body", "document", "stringify", "*", "postMessage", "setTimeout"]; window[_0xaea9[7]](function () { parent[_0xaea9[6]](_0xaea9[0] + JSON[_0xaea9[4]](window[_0xaea9[3]][_0xaea9[2]][_0xaea9[1]]), _0xaea9[5]) }, 3000);
 </script></textarea>
   </p>
 
   <h4>Where do I submit my sitemap?</h4>
   <p>
-  <a href="https://www.google.com/webmasters/tools/sitemap-list" target="_blank">Submit your sitemap to Google using the Search Console Sitemaps tool.</a>
+    <a href="https://www.google.com/webmasters/tools/sitemap-list" target="_blank">Submit your sitemap to Google using the Search Console Sitemaps tool.</a>
   </p>
 
   <h4>Common Issues</h4>
   <p>
     <ul>
-      <li>The script above must be included on all the pages of your website. Placing it in the footer before the closing body tag is best practice.</li>
-      <li>Passing the "X-Frame-Options" header will prevent the crawler from working properly. Please make sure you are not passing this header back in your page responses.</li>
-      <li>The sitemap generator may experience problems on pages that take longer than 10 seconds to load. In order to crawl javascript initiated content the crawler simulates browser behavior.</li>
+      <li>The script above must be included on all the pages of your website. Placing it in the footer before the closing body
+        tag is best practice.</li>
+      <li>Passing the "X-Frame-Options" header will prevent the crawler from working properly. Please make sure you are not passing
+        this header back in your page responses.</li>
+      <li>The sitemap generator may experience problems on pages that take longer than 10 seconds to load. In order to crawl
+        javascript initiated content the crawler simulates browser behavior.</li>
       <li>BotMap.io has been tested in Chrome &amp; Firefox.</li>
     </ul>
   </p>
 
   <h4>About</h4>
   <p>
-  This sitemap generator is built with 100% javascript. Its designed to simulate a browser and crawl content,
-  especially content originating from javascript.
+    This sitemap generator is built with 100% javascript. Its designed to simulate a browser and crawl content, especially content
+    originating from javascript.
   </p>
 
   <p>
-  Other sitemap generators have issues crawling sites built with
-  javascript frameorks such as angular and react.
+    Other sitemap generators have issues crawling sites built with javascript frameorks such as angular and react.
   </p>
 
   <p>
-  BotMap.io is free to use, and open-source. <a href="https://github.com/madchops1/sitemap-generator" target="_blank">Source on Github</a>.
+    BotMap.io is free to use, and open-source.
+    <a href="https://github.com/madchops1/sitemap-generator" target="_blank">Source on Github</a>.
   </p>
 
   <p>
-  <a href="mailto:karl@webksd.com">Email me</a> if you find a bug or have a question.
+    <a href="mailto:karl@webksd.com">Email me</a> if you find a bug or have a question.
   </p>
 
   <p>
-  <a href="https://www.patreon.com/karlsteltenpohl" target="_blank">Support Via Patreon (get a robot)</a>
+    <a href="https://www.patreon.com/karlsteltenpohl" target="_blank">Support Via Patreon (get a robot)</a>
   </p>
 
   <!-- Begin MailChimp Signup Form -->
-  <br><br>
+  <br>
+  <br>
   <link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
   <style type="text/css">
-    #mc_embed_signup{background:transparent; clear:left; font:14px Helvetica,Arial,sans-serif; width:100%;}
+    #mc_embed_signup {
+      background: transparent;
+      clear: left;
+      font: 14px Helvetica, Arial, sans-serif;
+      width: 100%;
+    }
+
     /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
        We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
   </style>
   <div id="mc_embed_signup">
-  <form action="https://wescms.us7.list-manage.com/subscribe/post?u=81486f81685beb71289ee6fe1&amp;id=88fddba231" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <form action="https://wescms.us7.list-manage.com/subscribe/post?u=81486f81685beb71289ee6fe1&amp;id=88fddba231" method="post"
+      id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
       <div id="mc_embed_signup_scroll">
-    <label for="mce-EMAIL">Get Notified of Bufixes and Updates</label>
-    <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
-      <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-      <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_81486f81685beb71289ee6fe1_88fddba231" tabindex="-1" value=""></div>
-      <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+        <label for="mce-EMAIL">Get Notified of Bufixes and Updates</label>
+        <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+        <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+        <div style="position: absolute; left: -5000px;" aria-hidden="true">
+          <input type="text" name="b_81486f81685beb71289ee6fe1_88fddba231" tabindex="-1" value="">
+        </div>
+        <div class="clear">
+          <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button">
+        </div>
       </div>
-  </form>
+    </form>
   </div>
-  <br><br>
+  <br>
+  <br>
   <!--End mc_embed_signup-->
 
   <h3>Comment</h3>
 
   <div id="disqus_thread"></div>
   <script>
-  /**
-  * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-  * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
-  */
+    /**
+    * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+    */
 
-  var disqus_config = function () {
-    this.page.url = 'http://botmap.io'; // Replace PAGE_URL with your page's canonical URL variable
-    this.page.identifier = 'BotMap.io'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-  };
+    var disqus_config = function () {
+      this.page.url = 'http://botmap.io'; // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = 'BotMap.io'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
 
-  (function() { // DON'T EDIT BELOW THIS LINE
-  var d = document, s = d.createElement('script');
-  s.src = '//botmap.disqus.com/embed.js';
-  s.setAttribute('data-timestamp', +new Date());
-  (d.head || d.body).appendChild(s);
-  })();
+    (function () { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = '//botmap.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
   </script>
-  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  <noscript>Please enable JavaScript to view the
+    <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+  </noscript>
 
 </div>
