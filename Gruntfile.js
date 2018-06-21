@@ -21,8 +21,8 @@ module.exports = function (grunt) {
 
   // Configurable paths for the application
   var appConfig = {
-    app: require('./bower.json').appPath || 'app',
-    dist: 'dist'
+    app: require('./bower.json').appPath || './app',
+    dist: './dist'
   };
 
   // Define the configuration for all the tasks
@@ -45,7 +45,7 @@ module.exports = function (grunt) {
         }
       },
       jsTest: {
-        files: ['test/spec/{,*/}*.js'] //,
+        files: ['./test/spec/{,*/}*.js'] //,
         //tasks: ['newer:jshint:test', 'newer:jscs:test', 'karma']
       },
       compass: {
@@ -174,7 +174,7 @@ module.exports = function (grunt) {
     postcss: {
       options: {
         processors: [
-          require('autoprefixer-core')({browsers: ['last 1 version']})
+          require('autoprefixer-core')({ browsers: ['last 1 version'] })
         ]
       },
       server: {
@@ -202,23 +202,23 @@ module.exports = function (grunt) {
     wiredep: {
       app: {
         src: ['<%= yeoman.app %>/index.html'],
-        ignorePath:  /\.\.\//
+        ignorePath: /\.\.\//
       },
       test: {
         devDependencies: true,
         src: '<%= karma.unit.configFile %>',
-        ignorePath:  /\.\.\//,
-        fileTypes:{
+        ignorePath: /\.\.\//,
+        fileTypes: {
           js: {
             block: /(([\s\t]*)\/{2}\s*?bower:\s*?(\S*))(\n|\r|.)*?(\/{2}\s*endbower)/gi,
-              detect: {
-                js: /'(.*\.js)'/gi
-              },
-              replace: {
-                js: '\'{{filePath}}\','
-              }
+            detect: {
+              js: /'(.*\.js)'/gi
+            },
+            replace: {
+              js: '\'{{filePath}}\','
             }
           }
+        }
       },
       sass: {
         src: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
@@ -287,6 +287,7 @@ module.exports = function (grunt) {
     },
 
     // Performs rewrites based on filerev and the useminPrepare configuration
+    // replace paths to images and styles images 
     usemin: {
       html: ['<%= yeoman.dist %>/{,*/}*.html'],
       css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
@@ -354,7 +355,7 @@ module.exports = function (grunt) {
     htmlmin: {
       dist: {
         options: {
-          collapseWhitespace: true,
+          //collapseWhitespace: true,
           conservativeCollapse: true,
           collapseBooleanAttributes: true,
           removeCommentsFromCDATA: true
@@ -397,35 +398,46 @@ module.exports = function (grunt) {
     // Replace Google CDN references
     cdnify: {
       dist: {
-        html: ['<%= yeoman.dist %>/*.html']
+        html: ['<%= yeoman.app %>/index.html']
       }
     },
 
     // Copies remaining files to places other tasks can use
     copy: {
       dist: {
-        files: [{
-          expand: true,
-          dot: true,
-          cwd: '<%= yeoman.app %>',
-          dest: '<%= yeoman.dist %>',
-          src: [
-            '*.{ico,png,txt}',
-            '*.html',
-            'images/{,*/}*.{webp}',
-            'styles/fonts/{,*/}*.*'
+        files:
+          [
+            {
+              expand: true,
+              dot: true,
+              cwd: '<%= yeoman.app %>',
+              dest: '<%= yeoman.dist %>',
+              src: [
+                '*.{ico,png,txt}',
+                '*.html',
+                'images/{,*/}*.{webp}',
+                'styles/fonts/{,*/}*.*'
+              ]
+            },
+            {
+              expand: true,
+              cwd: '.tmp/images',
+              dest: '<%= yeoman.dist %>/images',
+              src: ['generated/*']
+            },
+            {
+              expand: true,
+              cwd: '.',
+              src: 'bower_components/bootstrap-sass-official/assets/fonts/bootstrap/*',
+              dest: '<%= yeoman.dist %>'
+            },
+            {
+              expand: true,
+              cwd: '<%= yeoman.app %>/views',
+              src: '{,*/}*.*',
+              dest: '<%= yeoman.dist %>/views'
+            }
           ]
-        }, {
-          expand: true,
-          cwd: '.tmp/images',
-          dest: '<%= yeoman.dist %>/images',
-          src: ['generated/*']
-        }, {
-          expand: true,
-          cwd: '.',
-          src: 'bower_components/bootstrap-sass-official/assets/fonts/bootstrap/*',
-          dest: '<%= yeoman.dist %>'
-        }]
       },
       styles: {
         expand: true,
@@ -490,20 +502,21 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('build', [
-    'clean:dist',
-    'wiredep',
-    'useminPrepare',
-    'concurrent:dist',
-    'postcss',
-    'ngtemplates',
-    'concat',
-    'ngAnnotate',
-    'copy:dist',
-    'cdnify',
+    'clean:dist', // clean up .tmp and dist
+    'wiredep', // wire the bower components in app/index.html
+    'useminPrepare', // gets the concat js and css from the app.index.html
+    //'ngtemplates:dist', // generate the templates from app/views and put it in .tmp AND puts the ref in the app.js index
+    //'useminPrepare', // gets the concat js and css from the app.index.html
+    'concurrent:dist', // copy images and svg
+    'postcss', // css
+    'cdnify', // cdnify
+    'concat', // copies build js to .tmp/concat/scripts and styles
     'cssmin',
+    'ngAnnotate', // makes the js .tmp/concat/scripts
     'uglify',
-    'filerev',
-    'usemin',
+    'copy:dist', // copies files, index, images, etc from app to dist
+    'filerev', // rename
+    'usemin', // replace
     'htmlmin'
   ]);
 
