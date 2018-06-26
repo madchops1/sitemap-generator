@@ -177,7 +177,7 @@ angular
 
     var handler = StripeCheckout.configure({
       key: $rootScope.environment.stripeKey,
-      image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
+      image: 'http://botmap.io/images/karl.e8e48f1e.png',
       locale: 'auto',
       token: function (token) {
         $http({

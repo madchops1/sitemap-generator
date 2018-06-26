@@ -10,3 +10,6 @@ Run `grunt` for building and `grunt serve` for preview.
 ## Testing
 
 Running `grunt test` will run the unit tests with karma.
+
+## Deploying 
+Run `./deploy.sh` to deploy all files to S3 from `/dist`.

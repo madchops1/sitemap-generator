@@ -23,8 +23,8 @@
 */
 
 angular.module('sitemapGeneratorApp')
-  .controller('MainCtrl',[ '$scope', function ($scope) {
-  //.controller('MainCtrl',[ '$scope', '$http', '$sce', function ($scope, $http, $sce) {
+  .controller('MainCtrl', ['$scope', function ($scope) {
+    //.controller('MainCtrl',[ '$scope', '$http', '$sce', function ($scope, $http, $sce) {
 
     $scope.inputUrl = '';
     $scope.robotsTxt = '';
@@ -51,17 +51,17 @@ angular.module('sitemapGeneratorApp')
     var messageEvent = eventMethod == "attachEvent" ? "onmessage" : "message";
 
     // Listen to message from child window
-    eventer(messageEvent,function(e) {
+    eventer(messageEvent, function (e) {
       //console.log('parent received message!:  ',e.data);
       //console.log('parent received message!', $scope.currentUrl);
-      if(e.data.indexOf('sitemapgenerator') !== -1) {
+      if (e.data.indexOf('sitemapgenerator') !== -1) {
 
         // the script is there!
         $scope.script[$scope.currentUrl] = true;
 
         // get the links
         $scope.getLinks(e.data);
-        
+
 
         console.log('Links:', $scope.links);
         //$scope.$apply({});
@@ -79,7 +79,7 @@ angular.module('sitemapGeneratorApp')
         // can't error here as other postMessage calls may execute first
         //console.log('ERROR 0002','you must include a script on your page');
       }
-    },false);
+    }, false);
 
 
 
@@ -87,18 +87,18 @@ angular.module('sitemapGeneratorApp')
     $scope.go = function () {
 
       //
-      if($scope.inputUrl == '') { return false; }
+      if ($scope.inputUrl == '') { return false; }
 
       // format the input url
       // if trailing slash remove it
-      if($scope.inputUrl.substr(-1) === '/') {
+      if ($scope.inputUrl.substr(-1) === '/') {
         $scope.inputUrl = $scope.inputUrl.substr(0, $scope.inputUrl.length - 1);
       }
 
       console.log('go', $scope.inputUrl);
 
       // if no http
-      if($scope.inputUrl.substr(0,7) !== 'http://' && $scope.inputUrl.substr(0,8) !== 'https://') {
+      if ($scope.inputUrl.substr(0, 7) !== 'http://' && $scope.inputUrl.substr(0, 8) !== 'https://') {
         $scope.inputUrl = 'http://' + $scope.inputUrl;
       }
 
@@ -110,13 +110,13 @@ angular.module('sitemapGeneratorApp')
       $scope.pushToLinks($scope.inputUrl); // add the input url 
 
       // handle any robots txt
-      if($scope.robotsTxt !== '' && !$scope.robotTxtFound) {
+      if ($scope.robotsTxt !== '' && !$scope.robotTxtFound) {
         $scope.getDisallowedUrls();
         $scope.robotsTxtFound = true;
       }
 
       //$scope.links.push({ crawled : false, url : $scope.inputUrl });
-      
+
       $scope.getPage($scope.inputUrl);
 
     };
@@ -134,13 +134,13 @@ angular.module('sitemapGeneratorApp')
       var lines = $scope.robotsTxt.split('\n');
       console.log('LINES', lines);
 
-      for(var i=0; i<lines.length; i++) {
+      for (var i = 0; i < lines.length; i++) {
         var line = lines[i].toLowerCase();
-        if(line.indexOf('disallow') > -1) {
+        if (line.indexOf('disallow') > -1) {
           var lineArray = line.split(':');
-          var url = lineArray[1].replace(/\s/g,'');
+          var url = lineArray[1].replace(/\s/g, '');
           console.log('DISALLOWED URL', url);
-          if(url !== "") {
+          if (url !== "") {
             $scope.disallowedUrls.push($scope.inputUrl + url);
           }
         }
@@ -168,8 +168,8 @@ angular.module('sitemapGeneratorApp')
       Generates an iFrame...
      */
     $scope.getPage = function (url) {
-      if($scope.cncl == true) { return false; }
-      console.log('getPage',url);
+      if ($scope.cncl == true) { return false; }
+      console.log('getPage', url);
       //console.log('Links',$scope.links);
       $scope.preview = '';
       $scope.script[url] = false;
@@ -195,69 +195,75 @@ angular.module('sitemapGeneratorApp')
         console.log('script check timeout...', url, $scope.script);
 
         // error
-        if($scope.script[url] == false) {
+        if ($scope.script[url] == false) {
           // no script on page
-          console.log('ERROR 0001','you must include a script on your page');
+          console.log('ERROR 0001', 'you must include a script on your page');
           $scope.pageError($scope.currentUrl);
         }
       }, 9000);
     }
 
     $scope.getLinks = function (html) {
+
+
+      console.log('OMEGA', html);
       var container = document.createElement("p");
       container.innerHTML = html;
 
       var anchors = container.getElementsByTagName("a");
       var list = [];
+      var list = [];
+
+      //console.log('ALPHA', anchors);
 
       for (var i = 0; i < anchors.length; i++) {
-        if($scope.cncl == true) { break; }
+        if ($scope.cncl == true) { break; }
 
         //anchors[i] = anchors[i].replace(/\\"/g, '"');
         //var x = JSON.stringify(anchors[i]);
         //x = x.replace(/\\"/g, '"');
         //console.log(anchors[i], x);
         // replace the hostname
-        var href = anchors[i].href.replace(/\%22/g, '').replace('http://'+window.location.host+window.location.pathname,'');
-
-
+        //console.log(i, window.location);
+        //console.log(i, anchors[i].href);
+        //var href = anchors[i].href.replace(/\%22/g, '').replace('http://' + window.location.host + window.location.pathname, '');
+        var href = anchors[i].href.replace(/\%22/g, '').replace('http://' + window.location.host + '/', '');
 
         // if trailing slash remove it
-        if(href.substr(-1) === '/') {
+        if (href.substr(-1) === '/') {
           href = href.substr(0, href.length - 1);
         }
 
         // if there were two trailing slashes remove it
-        if(href.substr(-1) === '/') {
+        if (href.substr(-1) === '/') {
           href = href.substr(0, href.length - 1);
         }
 
         // if there is a trailing back slash
         //if(href.substr(-1) === "\\") {
-          //href = href.substr(0, href.length - 1);
-          href = href.replace(/\\/g, '');
-          href = href.replace(/%5C/g, '');
+        //href = href.substr(0, href.length - 1);
+        href = href.replace(/\\/g, '');
+        href = href.replace(/%5C/g, '');
 
         //}
         // Remove trailing quote
-        if(href.substr(-1) === '"') {
+        if (href.substr(-1) === '"') {
           href = href.substr(0, href.length - 1);
         }
 
-        // Handle/Skip mailto: , javascript
-        if(href.indexOf('mailto:') !== -1 || href.indexOf('javascript:') !== -1) {
+        // Handle/Skip mailto:, javascript:, tel:
+        if (href.indexOf('mailto:') !== -1 || href.indexOf('javascript:') !== -1 || href.indexOf('tel:') !== -1) {
           continue;
         }
 
-        // Handle :
-
+        //console.log(i, href);
 
         // Handle remote urls
         // If there is a remote url
-        if(href.substr(0,7) === 'http://' || href.substr(0,8) === 'https://' || href.substr(0,2) === '//') {
+        if (href.substr(0, 7) === 'http://' || href.substr(0, 8) === 'https://' || href.substr(0, 2) === '//') {
 
           // and If the url is the same as the site being craled add it to links
-          if(href.indexOf($scope.inputUrl) !== -1) {
+          if (href.indexOf($scope.inputUrl) !== -1) {
             //$scope.links[href] = { crawled : false, url : href };
             //$scope.links.push({ crawled : false, url : href });
             $scope.pushToLinks(href);
@@ -267,8 +273,10 @@ angular.module('sitemapGeneratorApp')
           continue;
         }
 
+        console.log(i, href);
+
         // If it is an absolute path link
-        if(href.substr(0,1) === '/') {
+        if (href.substr(0, 1) === '/') {
           //$scope.links[$scope.inputUrl + href] = { crawled : false, url : $scope.inputUrl + href };
           //$scope.links.push({ crawled : false, url : $scope.inputUrl + href });
           $scope.pushToLinks($scope.inputUrl + href);
@@ -311,7 +319,7 @@ angular.module('sitemapGeneratorApp')
 
 
           // if there is another page
-          if($scope.links[j]) {
+          if ($scope.links[j]) {
             console.log('THERE IS ANOTHER');
             $scope.getPage($scope.links[j].url);
             break;
@@ -340,29 +348,29 @@ angular.module('sitemapGeneratorApp')
       //}
 
       // remove trailing hash
-      if(href.substr(-1) === '#') {
+      if (href.substr(-1) === '#') {
         href = href.substr(0, href.length - 1);
       }
 
       // remove trailing slash
-      if(href.substr(-1) === '/') {
+      if (href.substr(-1) === '/') {
         href = href.substr(0, href.length - 1);
       }
-      
+
       // Disallowed URLS
       //console.log('pushToLinks', $scope.disallowedUrls);
-      for(var i=0; i<$scope.disallowedUrls.length; i++) {
+      for (var i = 0; i < $scope.disallowedUrls.length; i++) {
         console.log('TACO', href, $scope.disallowedUrls[i], href.indexOf($scope.disallowedUrls[i]));
-        if(href.indexOf($scope.disallowedUrls[i]) > -1) {
+        if (href.indexOf($scope.disallowedUrls[i]) > -1) {
           return false;
         }
       }
 
       //console.log('pushToLinks', href);
 
-      var limit = 50000;
+      var limit = 5000;
 
-      if($scope.links.length > limit - 1) {return false;}
+      if ($scope.links.length > limit - 1) { return false; }
 
       // prevent dupes
       for (var i = $scope.links.length - 1; i > -1; i--) {
@@ -372,22 +380,22 @@ angular.module('sitemapGeneratorApp')
         //    array.splice(i, 1);
       }
       // push it
-      $scope.links.push({ crawled : 0, url : href });
+      $scope.links.push({ crawled: 0, url: href });
 
     };
 
     /* Page Class */
     $scope.pageClass = function (crawled, url) {
-      if(crawled == 2) {
+      if (crawled == 2) {
         return 'crawl-status-3';
       }
-      else if($scope.currentUrl == url) {
+      else if ($scope.currentUrl == url) {
         return 'crawl-status-2';
       }
-      else if(crawled == 0) {
+      else if (crawled == 0) {
         return 'crawl-status-0';
       }
-      else if(crawled == 1) {
+      else if (crawled == 1) {
         return 'crawl-status-1';
       }
     };
@@ -395,18 +403,18 @@ angular.module('sitemapGeneratorApp')
     /* Page Icon */
     $scope.pageIcon = function (crawled, url) {
       //console.log('Page icon',crawled, url);
-      if(crawled == 2) {
+      if (crawled == 2) {
         return 'glyphicon-remove';
       }
-      else if($scope.currentUrl == url) {
+      else if ($scope.currentUrl == url) {
         return 'glyphicon-cog glyphicon-spin';
       }
       // not crawled
-      else if(crawled == 0) {
+      else if (crawled == 0) {
         return 'glyphicon-unchecked';
       }
       // crawled success
-      else if(crawled == 1) {
+      else if (crawled == 1) {
         return 'glyphicon-ok';
       }
     };
@@ -416,11 +424,11 @@ angular.module('sitemapGeneratorApp')
       console.log('page error', url);
       for (var i = $scope.links.length - 1; i > -1; i--) {
         if ($scope.links[i].url === url) {
-          console.log('ZED',i, url, $scope.inputUrl);
+          console.log('ZED', i, url, $scope.inputUrl);
 
           $scope.links[i].crawled = 2;
 
-          if(url == $scope.inputUrl) {
+          if (url == $scope.inputUrl) {
             $scope.error = true;
             $scope.msg = 'Your homepage URL does not have the script installed. See directions below.';
             $scope.cancel();
@@ -432,18 +440,24 @@ angular.module('sitemapGeneratorApp')
     }
 
     /* Download */
-    $scope.download = function(link) {
+    $scope.__download = function (link) {
+
+
       console.log('download');
+
+
       var txt = '<?xml version="1.0" encoding="UTF-8"?>\n';
       txt = txt + '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
-      angular.forEach($scope.links, function(value, key){
+      angular.forEach($scope.links, function (value, key) {
         txt = txt + '<url><loc>' + value.url + '</loc><priority>0.5</priority></url>\n';
       });
       txt = txt + '</urlset>';
 
       $scope.textSitemap = txt;
-      
-      //document.open( 'data:text/xml;charset=utf-8,' + encodeURIComponent(txt),'_blank');
+      download(txt, "sitemap.xml", "text/xml");
+
+      //document.open('data:text/xml;charset=utf-8,' + encodeURIComponent(txt), '_blank');
+
     };
   }]);
 

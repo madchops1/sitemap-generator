@@ -66,7 +66,7 @@ Disallow: /scripts/view" ng-model="robotsTxt"></textarea>
             <a class="btn btn-lg btn-danger" ng-click="cancel()" ng-href="/" ng-hide="complete">Cancel
               <span class="glyphicon glyphicon-cog glyphicon-spin"></span>
             </a>
-            <a class="btn btn-lg btn-success" ng-click="download(this)" ng-href="/" ng-show="complete && !textSitemap">Download Sitemap
+            <a class="btn btn-lg btn-success" ng-click="__download(this)" ng-href="/" ng-show="complete && !textSitemap">Download Sitemap
               <span class="glyphicon glyphicon-floppy-save"></span>
             </a>
             <!-- <a class="btn btn-lg btn-info" ng-click="cancel()" href="">Start Over <span class="glyphicon glyphicon-refresh"></span></a> -->
@@ -106,7 +106,7 @@ Disallow: /scripts/view" ng-model="robotsTxt"></textarea>
   </ul>
   <br>
   <div class="center" ng-show="complete">
-    <a class="btn btn-lg btn-success" ng-click="download(this)" ng-hide="textSitemap" ng-href="/">Get Sitemap
+    <a class="btn btn-lg btn-success" ng-click="__download(this)" ng-hide="textSitemap" ng-href="/">Get Sitemap
       <span class="glyphicon glyphicon-floppy-save"></span>
     </a>
     <a class="btn btn-lg btn-info" ng-click="cancel()" href="/">Start Over

@@ -10,7 +10,8 @@
     "angular-route": "^1.4.0",
     "angular-sanitize": "^1.4.0",
     "angular-touch": "^1.4.0",
-    "auth0-lock": "^11.7.2"
+    "auth0-lock": "^11.7.2",
+    "downloadjs": "^1.4.8"
   },
   "devDependencies": {
     "angular-mocks": "^1.4.0"
