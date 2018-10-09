@@ -63,7 +63,7 @@ angular.module('sitemapGeneratorApp')
         $scope.getLinks(e.data);
 
 
-        console.log('Links:', $scope.links);
+        //console.log('Links:', $scope.links);
         //$scope.$apply({});
 
       }
@@ -273,7 +273,7 @@ angular.module('sitemapGeneratorApp')
           continue;
         }
 
-        console.log(i, href);
+        //console.log(i, href);
 
         // If it is an absolute path link
         if (href.substr(0, 1) === '/') {
@@ -368,7 +368,7 @@ angular.module('sitemapGeneratorApp')
 
       //console.log('pushToLinks', href);
 
-      var limit = 5000;
+      var limit = 50000;
 
       if ($scope.links.length > limit - 1) { return false; }
 

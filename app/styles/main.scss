@@ -12,9 +12,45 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 
 body {
   padding: 0;
-  background: url('../images/grey.png');
+  //background: url('../images/bgtrade.png');
 }
 
+body::before {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  //background: #222222;
+  //background: url('../images/bgtrade.png');
+  opacity: 0.1;
+  z-index: -1;
+}
+
+.btn-block {
+  text-align: left; 
+  white-space: normal !important;
+
+
+  .glyphicon {
+    margin: -40px 0px -40px auto;
+    background: #fff;
+    border: 5px solid $brand-primary;
+    border-radius: 100px;
+    display: block;
+    width: 100px;
+    height: 100px;
+    font-size: 60px;
+    line-height: 100px;
+    text-align: center;
+    color: $brand-primary;
+  }
+
+  p {
+    font-size: 14px;
+  }
+}
+ 
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
 .marketing,
@@ -73,7 +109,97 @@ small {
 
 /* Supporting marketing content */
 .marketing {
-  margin: 40px 0;
+  margin: 60px 0;
+
+  blockquote {
+    color: #525252;
+
+    ul {
+      margin: 0px 0 0 10px;
+      padding: 0px;
+
+      li {
+        list-style: none;
+      }
+    }
+  }
+
+  table {
+    text-align: left;
+    width: 100%;
+    //margin-bottom: 60px;
+    margin-top: 60px;
+
+    tr {
+      
+      th, td {
+        padding: 10px;
+        border-bottom: 1px solid #777;
+
+        &.blank {
+          border-bottom: 0px !important;
+        }
+
+        &.white {
+          background-color:#fff;
+        }
+
+        &.popular {
+          background-color: $brand-success;
+          font-size: 25px !important;
+          color: #fff;
+          text-align: center;
+          letter-spacing: 1px
+        }
+
+        &.free {
+          background-color: $brand-primary;
+          color: #fff;
+          letter-spacing: 1px;
+        }
+
+        &.name {
+          font-size: 20px;
+          font-weight: bold;
+        }
+
+        &.price-free {
+          background-color: #eee;
+          font-weight: bold;
+          text-align: center;
+        }
+
+        &.price-popular {
+          background-color: #ddd;
+          font-weight: bold;
+          text-align: center;
+        }
+
+        &.border-left {
+          border-left: 1px solid #777;
+        }
+
+        &.border-right {
+          border-right: 1px solid #777;
+        }
+
+        &.center{
+          text-align: center;
+        }
+
+        .glyphicon {
+          color: $brand-success;
+          font-size: 30px;
+        }
+
+        .glyphicon.red {
+          color: $brand-danger;
+        }
+
+
+      }
+    }
+  }
 
   p + h4 {
     margin-top: 28px;
@@ -685,6 +811,7 @@ span.glitch {
 
 .jumbotron {
   margin-top: 90px;
-  background-color: rgba(0,0,0,0.1);
+  //background-color: rgba(0,0,0,0.1);
+  background-color: transparent;
 }
 
