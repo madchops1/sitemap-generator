@@ -806,11 +806,12 @@ span.glitch {
 
 .navbar-default {
   border-color: transparent;
-  background-color: transparent;
+  background-color: #eee;
 }
 
 .jumbotron {
-  margin-top: 90px;
+  padding-top: 0px;
+  //margin-top: 90px;
   //background-color: rgba(0,0,0,0.1);
   background-color: transparent;
 }

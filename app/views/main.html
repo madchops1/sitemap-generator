@@ -1,18 +1,18 @@
 <div class="jumbotron" ng-hide="crawling">
 
-  <img src="images/karl.png" class="logo" alt="I'm Karl">
   <br>
 
   <h1>Sitemap Generator</h1>
 
   <p class="lead">
     I'll gladly crawl your site and generate an XML
-    <strong>SITEMAP</strong>
+    <strong>SITEMAP</strong> for sites using Angular, React, Vue, etc...
     <br>
-    <small>I play nice with sites that use a lot of javascript, angular, react, vue, etc.
+    <small>The only browser based sitemap generator for sites built with today's javascript frameworks.
       <span class="glyphicon glyphicon-heart"></span>
     </small>
     <Br>
+    <br>
   </p>
 
   <div class="alert alert-danger alert-dismissible" role="alert" ng-show="error">
@@ -36,7 +36,8 @@ Disallow: /scripts/view" ng-model="robotsTxt"></textarea>
       <small>This crawler/bot
         <u>
           <strong>cannot</strong>
-        </u> read a robots.txt file. If you wish to dissalow URLs please copy your robots.txt file directly into the box.</small>
+        </u> open a robots.txt file without causing CORS issues. If you wish to dissalow URLs please copy your robots.txt file
+        directly into the box.</small>
 
     </div>
     <a class="btn btn-lg btn-success" ng-disabled="!inputUrl" ng-hide="crawling" ng-click="go()" ng-href="javascript:void(0)">GO
@@ -46,6 +47,7 @@ Disallow: /scripts/view" ng-model="robotsTxt"></textarea>
     <br>
     <small>IMPORTANT: You must include the script below to your site
       <br>or botmap.io will not be able to crawl your site.</small>
+    <br>
     <br>
     <p>
       <textarea style="width:100%; height:112px; line-height:14px; padding:6px; border-radius:6px; background: #FFFEDF; border: 1px dashed #ccc; font-family: courier; font-size: 12px;"
@@ -157,6 +159,8 @@ Disallow: /scripts/view" ng-model="robotsTxt"></textarea>
     <ul>
       <li>The script above must be included on all the pages of your website. Placing it in the footer before the closing body
         tag is best practice.</li>
+      <li>The bot crawls a page by finding the URLs in the href attributes in a site's anchor tags. It can't execute your click
+        events. So make sure you have proper href attributes to be crawled. Or the bot won't find your pages.</li>
       <li>Passing the "X-Frame-Options" header will prevent the crawler from working properly. Please make sure you are not passing
         this header back in your page responses.</li>
       <li>The sitemap generator may experience problems on pages that take longer than 10 seconds to load. In order to crawl
@@ -167,8 +171,8 @@ Disallow: /scripts/view" ng-model="robotsTxt"></textarea>
 
   <h4>About</h4>
   <p>
-    This sitemap generator is built with 100% javascript. Its designed to simulate a browser and crawl content, especially content
-    originating from javascript.
+    This sitemap generator is built with 100% javascript, it is only front-end, it is entirely browser based. Cool right :) Its
+    designed to simulate a browser and crawl content, especially content originating from javascript.
   </p>
 
   <p>
@@ -176,16 +180,11 @@ Disallow: /scripts/view" ng-model="robotsTxt"></textarea>
   </p>
 
   <p>
-    BotMap.io is free to use, and open-source.
-    <a href="https://github.com/madchops1/sitemap-generator" target="_blank">Source on Github</a>.
+    At this time BotMap.io is free to use.
   </p>
 
   <p>
     <a href="mailto:karl@webksd.com">Email me</a> if you find a bug or have a question.
-  </p>
-
-  <p>
-    <a href="https://www.patreon.com/karlsteltenpohl" target="_blank">Support Via Patreon (get a robot)</a>
   </p>
 
   <!-- Begin MailChimp Signup Form -->
@@ -199,17 +198,14 @@ Disallow: /scripts/view" ng-model="robotsTxt"></textarea>
       font: 14px Helvetica, Arial, sans-serif;
       width: 100%;
     }
-
-    /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
-       We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
   </style>
-  <div id="mc_embed_signup">
+  <!--
+    <div id="mc_embed_signup">
     <form action="https://wescms.us7.list-manage.com/subscribe/post?u=81486f81685beb71289ee6fe1&amp;id=88fddba231" method="post"
       id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
       <div id="mc_embed_signup_scroll">
         <label for="mce-EMAIL">Get Notified of Bufixes and Updates</label>
         <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
-        <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
         <div style="position: absolute; left: -5000px;" aria-hidden="true">
           <input type="text" name="b_81486f81685beb71289ee6fe1_88fddba231" tabindex="-1" value="">
         </div>
@@ -220,8 +216,23 @@ Disallow: /scripts/view" ng-model="robotsTxt"></textarea>
     </form>
   </div>
   <br>
-  <br>
-  <!--End mc_embed_signup-->
+  <br> -->
+
+  <center>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+      <input type="hidden" name="cmd" value="_s-xclick" />
+      <input type="hidden" name="hosted_button_id" value="899WVASE6SL5Y" />
+      <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!"
+        alt="Donate with PayPal button" />
+      <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
+    </form>
+    Shameless ask to buy me a coffee please?
+    <br>I'd appreciate any kind of help.
+    <Br>
+    <br>
+  </center>
+
 
   <h3>Comment</h3>
 

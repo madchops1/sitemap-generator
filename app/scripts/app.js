@@ -20,9 +20,9 @@ angular
   .config(function ($routeProvider, $sceDelegateProvider, $sceProvider, $locationProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/home.html',
-        controller: 'HomeCtrl',
-        controllerAs: 'home'
+        templateUrl: 'views/main.html',
+        controller: 'MainCtrl',
+        controllerAs: 'main'
       })
       .when('/about', {
         templateUrl: 'views/about.html',
@@ -75,7 +75,7 @@ angular
     ]);*/
   }).run(['$rootScope', '$http', '$location', function ($rootScope, $http, $location) {
 
-    $rootScope.version = 'v1.2.0';
+    $rootScope.version = 'v1.2.1';
     const dateTime = Date.now();
     const now = Math.floor(dateTime / 1000);
     const environment = {
